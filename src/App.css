@@ -81,7 +81,7 @@
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   overflow: auto;
-  height: 87px;
+  max-height: 87px;
 }
 
 .list-suggest{
@@ -90,6 +90,8 @@
    font-size: var(--small-text);
    width: 100%;
    cursor: pointer;
+   border: 0;
+   background-color: transparent;
 }
 
 .list-suggest:hover{

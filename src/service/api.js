@@ -22,6 +22,7 @@ export async function  getPlaces (location) {
                 limit: 5
             }
         });
+        console.log("request");
     
         return response.data;
 
