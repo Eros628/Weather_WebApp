@@ -4,14 +4,18 @@ import './App.css'
 import { getPlaces, getWeather } from './service/api.js';
 import { SearchIcon } from 'lucide-react';
 import { debounce } from './service/util.js';
+import WeatherCard from './components/WeatherCard.jsx';
 
 function App() {
+  const [isFetched, setIsFetched] = useState(false);
   const [location, setLocation] = useState('');
   const [places, setPlaces] = useState([]);
+  const [weatherData, setWeatherData] = useState({});
 
   const getApi =  async ()=>{
       const data = await getWeather(location);
-      console.log(data);
+      setWeatherData(data);
+      setIsFetched(true);
       setPlaces([]);
   }
 
@@ -37,10 +41,11 @@ function App() {
   return (
     <>
       <div className='main-container'>
-        <div className='search-container'>
-          <h1>WeatherWise</h1>
+        <div className='search-container' style={{width: "300px"}}>
+          {!isFetched &&  <h1>WeatherWise</h1>}
           <form onSubmit={(e)=>{
               e.preventDefault(); 
+              getApi();
           }}>
             <div className='input-suggest-wrapper'>
               <div className='input-wrapper'>
@@ -67,6 +72,8 @@ function App() {
             </div>
           </form>
         </div>
+        {isFetched && <WeatherCard weatherData={weatherData} />}
+        
       </div>
     </>
   )

@@ -7,7 +7,22 @@ export async function getWeather(location){
     try {
       const response = await axios.get(`${BACK_END_URL}/api/weather/`,{
       params:{loc: location}});
-      return response;
+
+      
+      const {conditions, temp, precipprob, windspeed, icon, datetime} = response.data.currentConditions;
+      const {days, description, resolvedAddress} = response.data;
+      return {
+        conditions: conditions,
+        temp: temp,
+        rainChance: precipprob,
+        windspeed: windspeed,
+        icon: icon,
+        datetime: datetime,
+        days: days,
+        description: description,
+        place: resolvedAddress
+      };
+
 
     } catch (error) {
       console.log(error);
