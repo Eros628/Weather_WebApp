@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kiwi+Maru&family=Momo+Trust+Display&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+   --primary-color: #686868;
+   --secondary-color: #FAFAFA;
+   --bg-color: #E9E9E9;
+   --big-text: 2rem;
+   --medium-text: 1.5rem;
+   --small-text: 0.7rem;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Urbanist", sans-serif;
+}
+
+
+.main-container{
+  background-color: var(--bg-color);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+}
+
+.search-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-basis: 250px;
+  text-align: center;
+}
+
+.search-container > h1{
+   font-size: 2rem;
+}
+
+.input-suggest-wrapper{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-wrapper{
+  display: flex;
+  background-color: var(--secondary-color);
+  width: 100%;
+  justify-content: space-between;
+  padding: 5px 15px;
+  border-radius: 20px;
+  box-shadow:  inset 1px 1px 1px gray;
+
+}
+
+.input-bar, .search-btn{
+  appearance: none;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  font-size: var(--small-text);
+}
+
+.search-btn{
+  display: flex;
+}
+
+.places-suggestions-wrapper{
+  position: absolute;
+  display: flex;
+  bottom: -87px;
+  gap: 5px; 
+  width: 90%;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  border-top: 1px solid var(--primary-color);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  overflow: auto;
+  height: 87px;
+}
+
+.list-suggest{
+   padding: 0px  20px;
+   text-align: start;
+   font-size: var(--small-text);
+   width: 100%;
+   cursor: pointer;
+}
+
+.list-suggest:hover{
+  background-color: #E9E9E9;
+}
