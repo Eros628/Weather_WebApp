@@ -286,10 +286,6 @@
   color: var(--primary-color);
 }
 
-.card-col1:hover{
-  border: 1px solid #686868;
-}
-
 .weather-info-col2 > p {
   font-size: var(--default-text);
 }
