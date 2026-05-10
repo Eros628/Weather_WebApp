@@ -12,8 +12,8 @@ function App() {
   const [places, setPlaces] = useState([]);
   const [weatherData, setWeatherData] = useState({});
 
-  const getApi =  async ()=>{
-      const data = await getWeather(location);
+  const getApi =  async (place)=>{
+      const data = await getWeather(place);
       setWeatherData(data);
       setIsFetched(true);
       setPlaces([]);
@@ -30,6 +30,7 @@ function App() {
     })
 
     setPlaces(listPlaces);
+    return listPlaces;
   }
 
   const debounceSearch = useCallback(
@@ -41,11 +42,23 @@ function App() {
   return (
     <>
       <div className='main-container'>
-        <div className='search-container' style={{width: "300px"}}>
+        <div className='search-container' >
           {!isFetched &&  <h1>WeatherWise</h1>}
-          <form onSubmit={(e)=>{
+          <form onSubmit={ async (e)=>{
               e.preventDefault(); 
-              getApi();
+              debounceSearch.cancel?.();
+            
+              if(places.length !=0){
+                getApi(places[0]);
+                return;
+              }
+
+              const getPlaces = await setInput(location);
+
+              if(getPlaces.length > 0){
+                getApi(getPlaces[0]);
+              }
+              
           }}>
             <div className='input-suggest-wrapper'>
               <div className='input-wrapper'>
@@ -64,8 +77,9 @@ function App() {
                {places.length > 0 && 
               <div className='places-suggestions-wrapper'>
                 {places.map((place, index)=>{
-                  return <button type='submit' onClick={ ()=>{
+                  return <button type='button' onClick={ ()=>{
                     setLocation(place);
+                    getApi(place);
                   }}  className='list-suggest' key={index}>{place}</button>
                 })}
               </div>}

@@ -14,10 +14,16 @@ const SECRET_KEY = process.env.WEATHER_API_KEY;
 
 
 
-app.get('/api/weather/', async(req, res)=>{
-    const{loc} = req.query;
-    const response = await axios.get(`${BASE_URL}${loc}?key=${SECRET_KEY}`)
-    res.json(response.data);
+app.get(`/api/weather/:location`, async(req, res)=>{
+    try {  
+        const { location } = req.params;
+        const cleanLocation = encodeURIComponent(location);
+        const response = await axios.get(`${BASE_URL}${cleanLocation}`, {params: {key: SECRET_KEY}});
+        res.json(response.data);
+        
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 

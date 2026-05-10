@@ -4,11 +4,11 @@
    --primary-color: #686868;
    --secondary-color: #FAFAFA;
    --bg-color: #E9E9E9;
-   --bigger-text: 3rem;
-   --big-text: 2rem;
-   --medium-text: 1.3rem;
-   --default-text: 1rem;
-   --small-text: 0.7rem;
+   --bigger-text: 4.5rem;
+   --big-text: 3rem;
+   --medium-text: 2rem;
+   --default-text: 1.4rem;
+   --small-text: 1rem;
 }
 
 *{
@@ -22,15 +22,15 @@
 
 .main-container{
   background-color: var(--bg-color);
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--primary-color);
-  overflow-y: auto;
   gap: 20px;
+
 }
 
 .search-container{
@@ -38,10 +38,12 @@
   flex-direction: column;
   gap: 20px;
   text-align: center;
+  width: 30%;
+  animation: opacity 1s ease-in-out forwards;
 }
 
 .search-container > h1{
-   font-size: 2rem;
+   font-size: var(--bigger-text);
 }
 
 .input-suggest-wrapper{
@@ -49,6 +51,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 .input-wrapper{
@@ -56,7 +59,7 @@
   background-color: var(--secondary-color);
   width: 100%;
   justify-content: space-between;
-  padding: 5px 15px;
+  padding: 10px 15px;
   border-radius: 20px;
   box-shadow:  inset 1px 1px 1px gray;
 
@@ -68,6 +71,10 @@
   border: 0;
   background-color: transparent;
   font-size: var(--small-text);
+}
+
+.input-bar{
+  width: 100%;
 }
 
 .search-btn{
@@ -106,17 +113,20 @@
 
 .weather-info-container{
   display: flex;
-  width: 80%;
-  height: 300px;
+  width: 70%;
+  height: 530px;
   background-color: var(--secondary-color);
   border-radius: 20px;
   box-shadow: 2px 2px 5px gray;
+  animation: popup 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  overflow: hidden;
 }
 
 .weather-info-col1{
   display: flex;
   flex-direction: column;
   padding: 10px 20px 30px 20px;
+  gap: 20px;
 }
 
 .weather-info-col2{
@@ -128,6 +138,7 @@
   text-align: center;
   gap: 20px;
   padding: 10px;
+  max-width: 300px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
@@ -136,6 +147,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-size: var(--default-text);
 }
 
 .col2-upper-section > p:nth-child(1){
@@ -143,7 +155,11 @@
 }
 
 .col2-middle-section{
-  font-size: var(--small-text);
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
 }
 
 .col2-lower-section{
@@ -158,6 +174,7 @@
 .col1-upper-section{
   display: flex;
   justify-content: space-between;
+  font-size: var(--default-text);
 
 }
 .col1-middle-section{
@@ -181,7 +198,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: red;
 }
 
 .col1-middle-section > div:nth-child(1) > h1{
@@ -189,6 +205,10 @@
   padding: 0;
   margin:0;   
   line-height: 1;
+}
+
+.col1-middle-section > div:nth-child(1) > h1:nth-child(1){
+  display: flex;
 }
 
 .col1-middle-section > div:nth-child(1) > h1:nth-child(2){
@@ -204,9 +224,27 @@
 }
 
 
+
 .col1-lower-section{
   flex: 1;
   height: 50px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: end;
+  gap: 5px;
+}
+
+.col2-lower-section{
+  flex: 1;
+  flex-wrap: wrap;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  row-gap: 10px;
+  column-gap: 15px;
+  align-content: flex-start;
 }
 
 .weather-info-col1{
@@ -215,4 +253,191 @@
 
 .weather-info-col2{
   flex: 1;
+}
+
+.card-col1{
+  flex: 1;
+  font-size: var(--small-text);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 5px;
+  font-weight: 400;
+  padding: 5px;
+  border-radius: 15px;
+  height: 0%;
+  opacity: 0;
+  animation: miniPopUp 0.5s ease-in-out forwards;
+  overflow: hidden;
+
+}
+
+.card-col2{
+  flex: 1 1;
+  font-size: var(--small-text);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 15px;
+  padding: 5px;
+  border: 1px solid #686868;
+  border-radius: 10px;
+  color: var(--primary-color);
+}
+
+.card-col1:hover{
+  border: 1px solid #686868;
+}
+
+.weather-info-col2 > p {
+  font-size: var(--default-text);
+}
+
+
+
+.card-col1 > p:nth-child(1), .card-col2 > p:nth-child(1){
+  font-size: var(--small-text);
+  font-weight: bold;
+}
+
+.card-col1 > p:nth-child(2), .card-col2 > p:nth-child(2){
+  font-size: var(--default-text);
+}
+
+
+.card-col1 > p:nth-child(3), .card-col2 > p:nth-child(3){
+  font-size: var(--small-text);
+}
+
+.back-to-back-description{
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 50px;
+  transform-style: preserve-3d;
+  animation: rotateUpDown 5s ease-in-out alternate-reverse infinite;
+}
+
+.face-description > p{
+  font-weight: bold;
+  font-size:  var(--default-text);
+}
+
+.face-description, .back-description{
+  display:  flex;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  backface-visibility: hidden;
+  background-color: #f0f0f0;
+  justify-content: center;
+}
+
+.back-description{
+  position: absolute;
+  transform: rotateX(180deg);
+}
+
+
+
+@keyframes popup {
+  from{
+    height: 0px;
+  }
+  to{
+    height: 530px;
+  }
+}
+
+@keyframes miniPopUp {
+
+  100%{
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+
+
+@keyframes rotateUpDown {
+  0%{
+    transform: rotateX(0deg);
+  }
+  20%{
+    transform: rotateX(0deg);
+  }
+  60%{
+    transform: rotateX(-180deg);
+  }
+  100%{
+     transform: rotateX(-180deg);
+  }
+}
+
+@keyframes opacity {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+
+@media(max-width: 1000px){
+  .search-container{
+    width: 50%;
+  }
+  .main-container{
+    overflow: auto;
+    justify-content: start;
+    padding-top: 30px;
+  }
+
+  .weather-info-container{
+    width: 90%;
+    flex-direction: column;
+    height: auto !important;
+    overflow: visible;
+  }
+  
+  .weather-info-col2{
+    max-width: 100%;
+  }
+}
+
+@media(max-width: 700px){
+  .weather-info-col1{
+    gap: 40px;
+  }
+}
+
+@media(max-width: 500px){
+  :root{
+    --bigger-text: 4rem;
+   --big-text: 2.5rem;
+   --medium-text: 1.5rem;
+   --default-text: 1rem;
+   --small-text: 0.5rem;
+  }
+   .search-container{
+    width: 60%;
+  }
+
+}
+
+@media(max-width: 370px){
+  .search-container{
+    width: 80%;
+  }
+  :root{
+    --bigger-text: 3rem;
+   --big-text: 2rem;
+   --medium-text: 1.2rem;
+   --default-text: 1rem;
+   --small-text: 0.5rem;
+  }
 }
