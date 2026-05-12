@@ -4,20 +4,26 @@ import './App.css'
 import { getPlaces, getWeather } from './service/api.js';
 import { SearchIcon } from 'lucide-react';
 import { debounce } from './service/util.js';
-import WeatherCard from './components/WeatherCard.jsx';
+import  { WeatherCard,WeatherCardSkeleton } from './components/WeatherCard.jsx';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 function App() {
   const [isFetched, setIsFetched] = useState(false);
   const [location, setLocation] = useState('');
   const [places, setPlaces] = useState([]);
   const [weatherData, setWeatherData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const getApi =  async (place)=>{
+      setPlaces([]);
+      setIsLoading(true);
+      setIsFetched(true);
       const data = await getWeather(place);
       setWeatherData(data);
-      setIsFetched(true);
-      setPlaces([]);
+      setIsLoading(false);
   }
+
 
   const setInput = async(value)=>{
     if(value == ""){
@@ -37,11 +43,12 @@ function App() {
     debounce(setInput), []
   );
 
+  console.log(isLoading);
 
   
   return (
-    <>
-      <div className='main-container'>
+      <SkeletonTheme baseColor="#c5c3c3" highlightColor="#FAFAFA">
+        <div className='main-container'>
         <div className='search-container' >
           {!isFetched &&  <h1>WeatherWise</h1>}
           <form onSubmit={ async (e)=>{
@@ -86,10 +93,12 @@ function App() {
             </div>
           </form>
         </div>
-        {isFetched && <WeatherCard weatherData={weatherData} />}
+       { (isLoading || isFetched) &&  <WeatherCardSkeleton weatherData={weatherData} isLoading={isLoading} /> }
+       
         
       </div>
-    </>
+      </SkeletonTheme>
+
   )
 }
 

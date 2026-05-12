@@ -3,8 +3,12 @@ import '../App.css';
 import ForecastCard from "./ForecastCard";
 import { DateTime } from "luxon";
 import { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css';
 
-function WeatherCard({weatherData}){
+export function WeatherCard({weatherData}){
+
+
     const [currentWeather, setCurrentWeather] = useState({
         temp: weatherData.days[0].temp,
         conditions: weatherData.days[0].conditions.split(",").at(-1),
@@ -23,10 +27,6 @@ function WeatherCard({weatherData}){
     const isPM = time.split(" ").at(-1) == "PM"? true : false;
 
     const hours = currentWeather.hours.filter((hour)=> hour.datetimeEpoch >= timeSec).slice(0,6);
-
-    if(!weatherData){
-        return <div>LOADING </div>
-    }
 
     const getIcon =()=>{
         let size = "70px";
@@ -51,8 +51,9 @@ function WeatherCard({weatherData}){
 
 
     return(
-        <>
-            <div className="weather-info-container">
+        <> 
+           
+            <div className="weather-info-container" style={{animation: "none", height: "530px"}}>
                 <div className="weather-info-col1">
                     <div className="col1-upper-section">
                         <p>{weatherData.place.split(",")[0]}</p>
@@ -109,7 +110,69 @@ function WeatherCard({weatherData}){
     );
 }
 
+export function WeatherCardSkeleton({weatherData, isLoading}){
+    return(
+        <>  
+
+         {isLoading ?  <div className="weather-info-container" style={{animation: (Object.keys(weatherData).length !=0 ) && "none" }}>
+            <div className="weather-info-col1">
+                <div className="col1-upper-section">
+
+                    <p><Skeleton width={100} /></p>
+                    <p><Skeleton width={100} /></p>
+                </div>
+                
+                <div className="col1-middle-section">
+                    <div>
+    
+                        <h1><Skeleton width={150} height={130} /></h1>
+                        <h1><Skeleton width={150} height={40} /></h1>
+                    </div>
+                    <div>
+                        <div style={{ marginLeft: '30px' }}>
+                            <Skeleton width={50} height={50} circle={true} /> 
+                            <p><Skeleton width={80} /></p>
+                        </div>
+                        <div style={{ marginLeft: '30px' }}>
+                            <Skeleton width={50} height={50} circle={true} />
+                            <p><Skeleton width={80} /></p>
+                        </div>
+                    </div>
+                </div>
+                
+                    <div className="col1-lower-section" style={{justifyContent: "center"}}>
+                        <Skeleton count={7} inline={true} width={70} height={100} style={{marginLeft: "10px"}} />
+                    </div>
+                </div>
+            
+                <div className="weather-info-col2">
+                    <div className="col2-upper-section">
+                        <div><Skeleton width={100} /></div>
+                        <p><Skeleton width={80} /></p>
+                    </div>  
+                    
+                    <div className="col2-middle-section">
+                        <div><Skeleton width={50} height={50} /></div>
+                        <div className="back-to-back-description" style={{animation: "none"}}>
+                            <div className="face-description"><p><Skeleton width={100} /></p></div>
+                            <div className="back-description"><p><Skeleton width={100} /></p></div>
+                        </div>
+                    </div>
+                    
+                    <p><Skeleton width={150} /></p>
+                    
+                    <div className="col2-lower-section">
+                        <Skeleton inline={true} count={6} width={80} height={100} style={{ marginLeft: '10px' }} />
+                    </div>
+                </div>
+            </div> : <WeatherCard weatherData={weatherData}/> }
+
+   
+
+          
+        </>
+    )
+}
 
 
 
-export default WeatherCard;

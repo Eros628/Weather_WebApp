@@ -30,7 +30,7 @@
   align-items: center;
   color: var(--primary-color);
   gap: 20px;
-
+  overflow: hidden;
 }
 
 .search-container{
@@ -344,7 +344,7 @@
     height: 0px;
   }
   to{
-    height: 530px;
+    height: 500px;
   }
 }
 
