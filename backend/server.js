@@ -5,7 +5,7 @@ import express from 'express';
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:5500', 'http://127.0.0.1:5500', 'http://localhost:5173']
+    origin: [process.env.PRODUCTION_FRONTEND_URL, process.env.DEVELOPMENT_FRONTEND_URL]
 }));
 
 
