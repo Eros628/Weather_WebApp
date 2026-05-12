@@ -11,7 +11,7 @@ app.use(cors({
 
 const BASE_URL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
 const SECRET_KEY = process.env.WEATHER_API_KEY;
-
+const PORT = process.env.PORT || 3000;
 
 
 app.get(`/api/weather/:location`, async(req, res)=>{
@@ -27,6 +27,6 @@ app.get(`/api/weather/:location`, async(req, res)=>{
 });
 
 
-app.listen(3000, ()=>{
+app.listen(PORT, ()=>{
     console.log("LISTENING AT PORT: 3000");
 });
