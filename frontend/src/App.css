@@ -108,8 +108,9 @@
   position: absolute;
   display: flex;
   bottom: -87px;
+  right: 20px;
   gap: 5px; 
-  width: 90%;
+  width: 80%;
   flex-direction: column;
   background-color: var(--secondary-color);
   border-top: 1px solid var(--primary-color);
