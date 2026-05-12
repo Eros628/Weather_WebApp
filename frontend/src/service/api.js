@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACK_END_URL = "http://localhost:3000";
+const BACK_END_URL = import.meta.env.VITE_BACKEND_URL;
 
 
 export async function getWeather(location){
