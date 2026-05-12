@@ -27,8 +27,3 @@ A simple weather web application that fetches basic weather information on a spe
 # Production LIVE on:
 * https://weather-web-lkeidaofk-eros-projects-c11dc134.vercel.app
 
-
-# Guide
-To replicate this project, follow the steps below:
-
-## Clone this repo
