@@ -2,7 +2,7 @@ import { use, useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
 import './App.css'
 import { getPlaces, getWeather } from './service/api.js';
-import { SearchIcon } from 'lucide-react';
+import { SearchIcon, MapPin} from 'lucide-react';
 import { debounce } from './service/util.js';
 import  { WeatherCard,WeatherCardSkeleton } from './components/WeatherCard.jsx';
 import { SkeletonTheme } from 'react-loading-skeleton';
@@ -14,6 +14,7 @@ function App() {
   const [places, setPlaces] = useState([]);
   const [weatherData, setWeatherData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [currentLoction, setCurrentLocation] = useState({});
 
   const getApi =  async (place)=>{
       setPlaces([]);
@@ -43,9 +44,8 @@ function App() {
     debounce(setInput), []
   );
 
-  console.log(isLoading);
 
-  
+
   return (
       <SkeletonTheme baseColor="#c5c3c3" highlightColor="#FAFAFA">
         <div className='main-container'>
@@ -68,7 +68,13 @@ function App() {
               
           }}>
             <div className='input-suggest-wrapper'>
-              <div className='input-wrapper'>
+              <div className='input-outer-wrapper'>
+                 <button type='button' className='location-btn'  title='Get Your Current Location' onClick={()=>{
+                    navigator.geolocation.getCurrentPosition((pos)=>{
+                      getApi(pos.coords.latitude + ","+ pos.coords.longitude);
+                    });
+                 }} ><MapPin  color='#686868'/></button>
+                <div className='input-inner-wrapper'>
                 <input value={location} onChange={
                   (e)=>{
                      setLocation(e.target.value);
@@ -79,7 +85,8 @@ function App() {
                     debounceSearch(e.target.value);
                   }
                 } className='input-bar' placeholder='Enter your City'></input>
-                <button className='search-btn' type='submit'><SearchIcon color='#686868'></SearchIcon></button>
+                <button  className='search-btn' type='submit'><SearchIcon color='#686868'></SearchIcon></button>
+              </div>
               </div>
                {places.length > 0 && 
               <div className='places-suggestions-wrapper'>

@@ -40,6 +40,7 @@
   text-align: center;
   width: 30%;
   animation: opacity 1s ease-in-out forwards;
+  
 }
 
 .search-container > h1{
@@ -54,7 +55,28 @@
 
 }
 
-.input-wrapper{
+.location-btn{
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.5s linear(0, 1 44.7%, 0.898 51.8%, 0.874 55.1%, 0.866 58.4%, 0.888 64.3%, 1 77.4%, 0.98 84.5%, 1);
+}
+
+.location-btn:hover{
+  transform: translateY(-5px);
+}
+
+
+
+.input-outer-wrapper{
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.input-inner-wrapper{
   display: flex;
   background-color: var(--secondary-color);
   width: 100%;
@@ -62,8 +84,9 @@
   padding: 10px 15px;
   border-radius: 20px;
   box-shadow:  inset 1px 1px 1px gray;
-
 }
+
+
 
 .input-bar, .search-btn{
   appearance: none;
@@ -270,7 +293,12 @@
   opacity: 0;
   animation: miniPopUp 0.5s ease-in-out forwards;
   overflow: hidden;
+  cursor: pointer;
+  transition: transform   0.5s ease;
+}
 
+.card-col1:hover{
+  transform: scale(1.1);
 }
 
 .card-col2{
@@ -403,15 +431,20 @@
   .weather-info-col2{
     max-width: 100%;
   }
+  
 }
 
-@media(max-width: 700px){
+@media(max-width: 750px){
   .weather-info-col1{
     gap: 40px;
   }
+
+  .search-container > h1{
+   font-size: var(--big-text);
+}
 }
 
-@media(max-width: 500px){
+@media(max-width: 560px){
   :root{
     --bigger-text: 4rem;
    --big-text: 2.5rem;
@@ -421,6 +454,9 @@
   }
    .search-container{
     width: 60%;
+  }
+  .search-container > h1{
+    font-size: var(--big-text);
   }
 
 }

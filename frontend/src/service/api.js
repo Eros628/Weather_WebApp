@@ -10,6 +10,7 @@ export async function getWeather(location){
       
       const {conditions, temp, precipprob, windspeed, icon, datetime} = response.data.currentConditions;
       const {days, description, resolvedAddress} = response.data;
+      console.log(response);
       return {
         conditions: conditions,
         temp: temp,
