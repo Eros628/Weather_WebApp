@@ -1,16 +1,34 @@
-# React + Vite
+# WEATHERWISE
+A simple weather web application that fetches basic weather information on a specific city or country using visual crossing weather api. This project is based from the RoadMap.sh for learning frontend development. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Features:
+* Display basic weather information such as temperature, daily and hourly forcast, current condition, description on the current weather, wind speed, and rain chance. 
+* Integrate an auto suggestion when the user search a place, this was made by using an open source api, named Kohoot api. 
+* User allow to get its current location, utilizing the built in navigator geolocation in web browser.
 
-Currently, two official plugins are available:
+# What I Learned:
+* Learned how to integrate an api to an application,  and destructuring and managing json responses.
+* Learned how to use axios package for fetching and handling api. 
+* Learned how to create a server in express js, where this server acts as a middle man to handle the APIs more securely.
+* Learned how to structure a basic folder project and deploy my project to a web hosting providers. 
+* Learned the concept debouncing and apply it to my project for better api request. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# Next step :
+* Integrate a weather map.
+* Add more information about the weather.
+* Add a flood alert system. 
+* Improve the UI design.
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Project URL (from RoadMap):
+* https://roadmap.sh/projects/weather-app
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Production LIVE on:
+* https://weather-web-lkeidaofk-eros-projects-c11dc134.vercel.app
+
+
+# Guide
+To replicate this project, follow the steps below:
+
+## Clone this repo
