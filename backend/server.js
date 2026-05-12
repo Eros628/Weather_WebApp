@@ -28,5 +28,5 @@ app.get(`/api/weather/:location`, async(req, res)=>{
 
 
 app.listen(PORT, ()=>{
-    console.log("LISTENING AT PORT: 3000");
+    console.log(`LISTENING AT PORT: ${PORT}`);
 });
